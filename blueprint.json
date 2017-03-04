@@ -135,7 +135,7 @@
     ],
     "service_configurations": [
       {
-        "namespace": "EnginesSystem",
+        "publisher_namespace": "EnginesSystem",
         "type_path": "filesystem/local/filesystem",
         "variables": {
           "permissions": "rw",
