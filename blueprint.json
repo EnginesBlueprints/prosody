@@ -147,7 +147,7 @@
         }
       },
       {
-        "namespace": "EnginesSystem",
+        "publisher_namespace": "EnginesSystem",
         "type_path": "database/sql/mysql",
         "variables": {
           "collation": "utf8_general_ci",
