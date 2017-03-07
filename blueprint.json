@@ -167,24 +167,24 @@
         "name": "admin_user",
         "value": "",
         "mandatory": false,
+        "immutable": false,
         "ask_at_build_time": true,
         "build_time_only": false,
-        "immutable": false,
         "input": {
-          "label": "Administrators name",
           "type": "string",
+          "label": "Administrators name",
           "title": "",
           "comment": "",
           "hint": "Used for admin login",
           "placeholder": "",
-          "collection": {
-            "items": {
-            },
-            "include_blank": false
-          },
           "validation": {
             "pattern": "",
             "message": ""
+          },
+          "collection": {
+            "include_blank": false,
+            "items": {
+            }
           }
         }
       },
@@ -192,24 +192,24 @@
         "name": "admin_password",
         "value": "",
         "mandatory": false,
+        "immutable": false,
         "ask_at_build_time": true,
         "build_time_only": true,
-        "immutable": false,
         "input": {
-          "label": "Admin Password",
           "type": "password_with_confirmation",
+          "label": "Admin Password",
           "title": "",
           "comment": "",
           "hint": "",
           "placeholder": "",
-          "collection": {
-            "items": {
-            },
-            "include_blank": false
-          },
           "validation": {
             "pattern": "",
             "message": ""
+          },
+          "collection": {
+            "include_blank": false,
+            "items": {
+            }
           }
         }
       }
@@ -438,13 +438,31 @@
       {
         "label": "restart",
         "timespec": {
-          "minute": "1",
-          "hour": "0",
+          "minute": "*/5",
+          "hour": "*",
           "day_of_month": "*",
           "month": "*",
           "day_of_week": "*"
         },
         "instruction": "restart"
+      },
+      {
+        "label": "an_action",
+        "timespec": {
+          "minute": "*",
+          "hour": "1",
+          "day_of_month": "*",
+          "month": "*",
+          "day_of_week": "*"
+        },
+        "instruction": "action",
+        "actionator": {
+          "name": "add_user",
+          "params": {
+            "username": "tes",
+            "password": "tes"
+          }
+        }
       }
     ]
   }
