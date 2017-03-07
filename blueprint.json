@@ -167,24 +167,24 @@
         "name": "admin_user",
         "value": "",
         "mandatory": false,
-        "immutable": false,
         "ask_at_build_time": true,
         "build_time_only": false,
+        "immutable": false,
         "input": {
-          "type": "",
           "label": "Administrators name",
+          "type": "string",
           "title": "",
           "comment": "",
           "hint": "Used for admin login",
           "placeholder": "",
+          "collection": {
+            "items": {
+            },
+            "include_blank": false
+          },
           "validation": {
             "pattern": "",
             "message": ""
-          },
-          "collection": {
-            "include_blank": false,
-            "items": {
-            }
           }
         }
       },
@@ -192,24 +192,24 @@
         "name": "admin_password",
         "value": "",
         "mandatory": false,
-        "immutable": false,
         "ask_at_build_time": true,
         "build_time_only": true,
+        "immutable": false,
         "input": {
-          "type": "password",
           "label": "Admin Password",
+          "type": "password_with_confirmation",
           "title": "",
           "comment": "",
           "hint": "",
           "placeholder": "",
+          "collection": {
+            "items": {
+            },
+            "include_blank": false
+          },
           "validation": {
             "pattern": "",
             "message": ""
-          },
-          "collection": {
-            "include_blank": false,
-            "items": {
-            }
           }
         }
       }
@@ -273,13 +273,13 @@
         "return_type": "plain_text",
         "return_file_name": "",
         "enable_logging": false,
+        "variables": [
+
+        ],
         "script": {
           "language": "sh",
           "content": "#!/bin/bash\r\n\r\n\r\necho \"select user from prosody where store='accounts';\" |mysql  --column-names=0 -h $dbhost -u $dbuser --password=$dbpasswd $dbname \r\n"
-        },
-        "variables": [
-
-        ]
+        }
       },
       {
         "name": "add_user",
@@ -288,30 +288,26 @@
         "return_type": "plain_text",
         "return_file_name": "",
         "enable_logging": false,
-        "script": {
-          "language": "sh",
-          "content": "#!/bin/bash\r\necho $1 | /home/engines/bin/json_to_env  >/tmp/add_user.env \r\n. /tmp/add_user.env\r\n\r\nprosodyctl register $username $Domainname $password 1>/tmp/add_user.err\r\nif test $? -eq 0\r\n then\r\n  echo  Successfully added $username@$Domainname  \r\n  rm  /tmp/add_user.env\r\n  exit 0\r\n fi\r\n\r\necho \"Failed to add $username@$Domainname  \"\r\ncat /tmp/add_user.err\r\nexit -1"
-        },
         "variables": [
           {
             "name": "username",
             "value": "",
             "mandatory": false,
             "input": {
-              "label": "User Name",
               "type": "string",
+              "label": "User Name",
               "title": "",
               "comment": "",
               "hint": "",
               "placeholder": "",
-              "collection": {
-                "items": {
-                },
-                "include_blank": false
-              },
               "validation": {
                 "pattern": "",
                 "message": ""
+              },
+              "collection": {
+                "include_blank": false,
+                "items": {
+                }
               }
             }
           },
@@ -320,24 +316,28 @@
             "value": "",
             "mandatory": false,
             "input": {
-              "label": "Password",
               "type": "password_with_confirmation",
+              "label": "Password",
               "title": "",
               "comment": "",
               "hint": "",
               "placeholder": "",
-              "collection": {
-                "items": {
-                },
-                "include_blank": false
-              },
               "validation": {
                 "pattern": "",
                 "message": ""
+              },
+              "collection": {
+                "include_blank": false,
+                "items": {
+                }
               }
             }
           }
-        ]
+        ],
+        "script": {
+          "language": "sh",
+          "content": "#!/bin/bash\r\necho $1 | /home/engines/bin/json_to_env  >/tmp/add_user.env \r\n. /tmp/add_user.env\r\n\r\nprosodyctl register $username $Domainname $password 1>/tmp/add_user.err\r\nif test $? -eq 0\r\n then\r\n  echo  Successfully added $username@$Domainname  \r\n  rm  /tmp/add_user.env\r\n  exit 0\r\n fi\r\n\r\necho \"Failed to add $username@$Domainname  \"\r\ncat /tmp/add_user.err\r\nexit -1"
+        }
       },
       {
         "name": "del_user",
@@ -346,34 +346,34 @@
         "return_type": "plain_text",
         "return_file_name": "",
         "enable_logging": false,
-        "script": {
-          "language": "sh",
-          "content": "#!/bin/bash\r\n\r\necho $1 |/home/engines/bin/json_to_env >/tmp/del_user.env\r\n. /tmp/del_user.env\r\n\r\nprosodyctl deluser $username@$Domainname 1>/tmp/del_user.err\r\n if test $? -eq 0\r\n  then\r\n      rm  /tmp/del_user.env\r\n      echo  Sucessfully deleted $username@$Domainname\r\n      exit 0\r\n  fi\r\n\r\necho Failed to delete $username@$Domainname\r\ncat /tmp/del_user.err\r\nexit -1\r\n"
-        },
         "variables": [
           {
             "name": "username",
             "value": "",
             "mandatory": false,
             "input": {
-              "label": "Username",
               "type": "string",
+              "label": "Username",
               "title": "",
               "comment": "",
               "hint": "",
               "placeholder": "",
-              "collection": {
-                "items": {
-                },
-                "include_blank": false
-              },
               "validation": {
                 "pattern": "",
                 "message": ""
+              },
+              "collection": {
+                "include_blank": false,
+                "items": {
+                }
               }
             }
           }
-        ]
+        ],
+        "script": {
+          "language": "sh",
+          "content": "#!/bin/bash\r\n\r\necho $1 |/home/engines/bin/json_to_env >/tmp/del_user.env\r\n. /tmp/del_user.env\r\n\r\nprosodyctl deluser $username@$Domainname 1>/tmp/del_user.err\r\n if test $? -eq 0\r\n  then\r\n      rm  /tmp/del_user.env\r\n      echo  Sucessfully deleted $username@$Domainname\r\n      exit 0\r\n  fi\r\n\r\necho Failed to delete $username@$Domainname\r\ncat /tmp/del_user.err\r\nexit -1\r\n"
+        }
       },
       {
         "name": "change_password",
@@ -382,30 +382,26 @@
         "return_type": "plain_text",
         "return_file_name": "",
         "enable_logging": false,
-        "script": {
-          "language": "sh",
-          "content": "#!/bin/bash\r\n\r\necho $1 |/home/engines/bin/json_to_env >/tmp/chg_pass.env\r\n. /tmp/chg_pass.env\r\necho $password >/tmp/t\r\necho $password >>/tmp/t\r\n\r\ncat /tmp/t | prosodyctl passwd $username@$Domainname 1>/tmp/changepass.err\r\nif test $? -eq 0 \r\nthen\r\n   echo Sucessfully changed password for $username@$Domainname\r\n   rm /tmp/chg_pass.env\r\n   rm /tmp/t\r\n   exit 0\r\nfi\r\nrm /tmp/t\r\necho Failed\r\ncat /tmp/changepass.err\r\nexit -1\r\n"
-        },
         "variables": [
           {
             "name": "username",
             "value": "",
             "mandatory": false,
             "input": {
-              "label": "username",
               "type": "string",
+              "label": "username",
               "title": "",
               "comment": "",
               "hint": "",
               "placeholder": "",
-              "collection": {
-                "items": {
-                },
-                "include_blank": false
-              },
               "validation": {
                 "pattern": "",
                 "message": ""
+              },
+              "collection": {
+                "include_blank": false,
+                "items": {
+                }
               }
             }
           },
@@ -414,24 +410,28 @@
             "value": "",
             "mandatory": false,
             "input": {
-              "label": "password",
               "type": "password",
+              "label": "password",
               "title": "",
               "comment": "",
               "hint": "",
               "placeholder": "",
-              "collection": {
-                "items": {
-                },
-                "include_blank": false
-              },
               "validation": {
                 "pattern": "",
                 "message": ""
+              },
+              "collection": {
+                "include_blank": false,
+                "items": {
+                }
               }
             }
           }
-        ]
+        ],
+        "script": {
+          "language": "sh",
+          "content": "#!/bin/bash\r\n\r\necho $1 |/home/engines/bin/json_to_env >/tmp/chg_pass.env\r\n. /tmp/chg_pass.env\r\necho $password >/tmp/t\r\necho $password >>/tmp/t\r\n\r\ncat /tmp/t | prosodyctl passwd $username@$Domainname 1>/tmp/changepass.err\r\nif test $? -eq 0 \r\nthen\r\n   echo Sucessfully changed password for $username@$Domainname\r\n   rm /tmp/chg_pass.env\r\n   rm /tmp/t\r\n   exit 0\r\nfi\r\nrm /tmp/t\r\necho Failed\r\ncat /tmp/changepass.err\r\nexit -1\r\n"
+        }
       }
     ],
     "schedules": [
