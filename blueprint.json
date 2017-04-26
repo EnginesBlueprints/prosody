@@ -5,7 +5,7 @@
       "major": 1,
       "minor": 0
     },
-    "origin": "Engines Developer Studio 1.0"
+    "origin": "Engines Developer Studio 0.2"
   },
   "metadata": {
     "blueprint": {
@@ -14,8 +14,7 @@
         "minor": 1,
         "level": "alpha",
         "patch": 0
-      },
-      "timestamp": null
+      }
     },
     "software": {
       "display": {
@@ -29,21 +28,22 @@
         "label": "Standard Open Source Initiative MIT License",
         "url": "http://opensource.org/licenses/MIT"
       }
-    }
+    },
+    "timestamp": "2017-04-26 23:34:16 UTC"
   },
   "software": {
     "base": {
       "name": "prosody",
       "framework": "lua",
+      "deployment_type": "worker",
+      "http_protocol": "http_and_https",
+      "framework_port_override": 0,
+      "web_root_directory": "",
+      "continuous_deployment": false,
       "memory": {
         "required": 96,
         "recommended": 128
       },
-      "http_protocol": "http_and_https",
-      "framework_port_override": 0,
-      "deployment_type": "worker",
-      "web_root_directory": "",
-      "continuous_deployment": false,
       "install_form_comment": "",
       "first_run_url": "",
       "installation_report": "Prosody Jabber xmmp server published on _Engines_Builder(domain_name)\r\nadmin user is _Engines_Environment(admin_user)\r\nYou can manage users through the _Engines_Builder(build_name) Actions on the application control panel"
@@ -104,34 +104,34 @@
     ],
     "required_modules": [
       {
-        "name": "luasec",
-        "type": "luarocks",
-        "os_package": ""
+        "type": "lua",
+        "os_package": "",
+        "name": "luasec"
       },
       {
-        "name": "luafilesystem",
-        "type": "luarocks",
-        "os_package": ""
+        "type": "lua",
+        "os_package": "",
+        "name": "luafilesystem"
       },
       {
-        "name": "luasocket",
-        "type": "luarocks",
-        "os_package": ""
+        "type": "lua",
+        "os_package": "",
+        "name": "luasocket"
       },
       {
-        "name": "luaexpat",
-        "type": "luarocks",
-        "os_package": ""
+        "type": "lua",
+        "os_package": "",
+        "name": "luaexpat"
       },
       {
-        "name": "LuaDBI",
-        "type": "luarocks",
-        "os_package": ""
+        "type": "lua",
+        "os_package": "",
+        "name": "LuaDBI"
       },
       {
-        "name": "LuaSQL-MySQL",
-        "type": "luarocks",
-        "os_package": "libmysqlclient-dev"
+        "type": "lua",
+        "os_package": "libmysqlclient-dev",
+        "name": "LuaSQL-MySQL"
       }
     ],
     "service_configurations": [
@@ -241,11 +241,11 @@
 
     ],
     "components": {
+      "path": "",
+      "extract": false,
       "sources": [
 
-      ],
-      "path": "",
-      "extract": false
+      ]
     },
     "workers": {
       "blocking": "",
