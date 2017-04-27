@@ -29,7 +29,7 @@
         "url": "http://opensource.org/licenses/MIT"
       }
     },
-    "timestamp": "2017-04-26 23:34:16 UTC"
+    "timestamp": "2017-04-27 00:53:24 UTC"
   },
   "software": {
     "base": {
@@ -120,7 +120,7 @@
       },
       {
         "type": "lua",
-        "os_package": "",
+        "os_package": "libexpat1-dev",
         "name": "luaexpat"
       },
       {
@@ -130,7 +130,7 @@
       },
       {
         "type": "lua",
-        "os_package": "libmysqlclient-dev",
+        "os_package": "lua-sql-mysql",
         "name": "LuaSQL-MySQL"
       }
     ],
