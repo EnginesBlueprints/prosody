@@ -29,7 +29,7 @@
         "url": "http://opensource.org/licenses/MIT"
       }
     },
-    "timestamp": "2017-04-27 01:01:13 UTC"
+    "timestamp": "2017-04-27 01:09:08 UTC"
   },
   "software": {
     "base": {
@@ -97,6 +97,14 @@
       {
         "package": "libssl-dev",
         "version": ""
+      },
+      {
+        "package": "lua-sql-mysql-dev",
+        "version": ""
+      },
+      {
+        "package": "lua-dbi-mysql",
+        "version": ""
       }
     ],
     "installed_packages": [
@@ -104,34 +112,29 @@
     ],
     "required_modules": [
       {
+        "name": "luasec",
         "type": "lua",
-        "os_package": "",
-        "name": "luasec"
+        "os_package": ""
       },
       {
+        "name": "luafilesystem",
         "type": "lua",
-        "os_package": "",
-        "name": "luafilesystem"
+        "os_package": ""
       },
       {
+        "name": "luasocket",
         "type": "lua",
-        "os_package": "",
-        "name": "luasocket"
+        "os_package": ""
       },
       {
+        "name": "luaexpat",
         "type": "lua",
-        "os_package": "libexpat1-dev",
-        "name": "luaexpat"
+        "os_package": "libexpat1-dev"
       },
       {
+        "name": "LuaDBI",
         "type": "lua",
-        "os_package": "",
-        "name": "LuaDBI"
-      },
-      {
-        "type": "lua",
-        "os_package": "lua-sql-mysql-dev",
-        "name": "LuaSQL-MySQL"
+        "os_package": ""
       }
     ],
     "service_configurations": [
