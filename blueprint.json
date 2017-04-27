@@ -29,7 +29,7 @@
         "url": "http://opensource.org/licenses/MIT"
       }
     },
-    "timestamp": "2017-04-27 01:09:08 UTC"
+    "timestamp": "2017-04-27 01:31:34 UTC"
   },
   "software": {
     "base": {
@@ -67,7 +67,7 @@
       },
       "install": {
         "language": "sh",
-        "content": "#!/bin/bash\r\n\r\ncd /tmp/\r\nmkdir prosody-build\r\ncd prosody-build\r\nwget https://prosody.im/downloads/source/prosody-0.9.10.tar.gz\r\ntar xzf prosody-0.9.10.tar.gz\r\ncd prosody-0.9.10\r\n ./configure --help\r\n ./configure --ostype=debian\r\nmake\r\nmake install\r\ncd /\r\nrm -rf /tmp/prosody-build\r\n\r\nluarocks install luasec\r\nluarocks install luafilesystem\r\nluarocks install luasocket\r\nluarocks install luaexpat\r\nluarocks install LuaDBI\r\nluarocks install luadbi-mysql MYSQL_INCDIR=/usr/include/mysql/\r\n\r\nluarocks install luasql-mysql MYSQL_INCDIR=/usr/include/mysql/\r\ncp /home/app/prosody.cfg.lua.build /usr/local/etc/prosody/prosody.cfg.lua\r\nprosodyctl register $admin_user  $Domainname $admin_password\r\necho prosodyctl register $admin_user  $Domainname"
+        "content": "#!/bin/bash\r\n\r\ncd /tmp/\r\nmkdir prosody-build\r\ncd prosody-build\r\nwget https://prosody.im/downloads/source/prosody-0.9.10.tar.gz\r\ntar xzf prosody-0.9.10.tar.gz\r\ncd prosody-0.9.10\r\n ./configure --help\r\n ./configure --ostype=debian\r\nmake\r\nmake install\r\ncd /\r\nrm -rf /tmp/prosody-build\r\n\r\nluarocks install luasec\r\nluarocks install luafilesystem\r\nluarocks install luasocket\r\nluarocks install luaexpat\r\nluarocks install LuaDBI\r\nluarocks install luasql-mysql MYSQL_INCDIR=/usr/include/mysql/\r\nluarocks install luadbi-mysql MYSQL_INCDIR=/usr/include/mysql/\r\n\r\n\r\ncp /home/app/prosody.cfg.lua.build /usr/local/etc/prosody/prosody.cfg.lua\r\nprosodyctl register $admin_user  $Domainname $admin_password\r\necho prosodyctl register $admin_user  $Domainname"
       },
       "post_install": {
         "language": "sh",
@@ -112,29 +112,29 @@
     ],
     "required_modules": [
       {
-        "name": "luasec",
         "type": "lua",
-        "os_package": ""
+        "os_package": "",
+        "name": "luasec"
       },
       {
-        "name": "luafilesystem",
         "type": "lua",
-        "os_package": ""
+        "os_package": "",
+        "name": "luafilesystem"
       },
       {
-        "name": "luasocket",
         "type": "lua",
-        "os_package": ""
+        "os_package": "",
+        "name": "luasocket"
       },
       {
-        "name": "luaexpat",
         "type": "lua",
-        "os_package": "libexpat1-dev"
+        "os_package": "libexpat1-dev",
+        "name": "luaexpat"
       },
       {
-        "name": "LuaDBI",
         "type": "lua",
-        "os_package": ""
+        "os_package": "",
+        "name": "luaDBI"
       }
     ],
     "service_configurations": [
