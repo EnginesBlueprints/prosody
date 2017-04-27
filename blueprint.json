@@ -29,7 +29,7 @@
         "url": "http://opensource.org/licenses/MIT"
       }
     },
-    "timestamp": "2017-04-27 02:23:23 UTC"
+    "timestamp": "2017-04-27 02:01:33 UTC"
   },
   "software": {
     "base": {
@@ -150,24 +150,24 @@
         "name": "admin_user",
         "value": "",
         "mandatory": false,
+        "immutable": false,
         "ask_at_build_time": true,
         "build_time_only": false,
-        "immutable": false,
         "input": {
-          "label": "Administrators name",
           "type": "string",
+          "label": "Administrators name",
           "title": "",
           "comment": "",
           "hint": "Used for admin login",
           "placeholder": "",
-          "collection": {
-            "items": {
-            },
-            "include_blank": false
-          },
           "validation": {
             "pattern": "",
             "message": ""
+          },
+          "collection": {
+            "include_blank": false,
+            "items": {
+            }
           }
         }
       },
@@ -175,49 +175,24 @@
         "name": "admin_password",
         "value": "",
         "mandatory": false,
+        "immutable": false,
         "ask_at_build_time": true,
         "build_time_only": true,
-        "immutable": false,
         "input": {
-          "label": "Admin Password",
           "type": "password_with_confirmation",
+          "label": "Admin Password",
           "title": "",
           "comment": "",
           "hint": "",
           "placeholder": "",
-          "collection": {
-            "items": {
-            },
-            "include_blank": false
-          },
           "validation": {
             "pattern": "",
             "message": ""
-          }
-        }
-      },
-      {
-        "name": "Engines_Debug_Run",
-        "value": "true",
-        "mandatory": false,
-        "ask_at_build_time": false,
-        "build_time_only": false,
-        "immutable": false,
-        "input": {
-          "label": "",
-          "type": "string",
-          "title": "",
-          "comment": "",
-          "hint": "",
-          "placeholder": "",
-          "collection": {
-            "items": {
-            },
-            "include_blank": false
           },
-          "validation": {
-            "pattern": "",
-            "message": ""
+          "collection": {
+            "include_blank": false,
+            "items": {
+            }
           }
         }
       }
