@@ -29,7 +29,7 @@
         "url": "http://opensource.org/licenses/MIT"
       }
     },
-    "timestamp": "2017-05-12 00:00:51 UTC"
+    "timestamp": "2017-05-12 00:39:45 UTC"
   },
   "software": {
     "base": {
@@ -67,7 +67,7 @@
       },
       "install": {
         "language": "sh",
-        "content": "#!/bin/bash\r\n\r\ncd /tmp/\r\nmkdir prosody-build\r\ncd prosody-build\r\nwget https://prosody.im/downloads/source/prosody-0.9.12.tar.gz\r\ntar xzf prosody-0.9.12.tar.gz\r\ncd prosody-0.9.12\r\n ./configure --help\r\n ./configure --ostype=debian\r\nmake\r\nmake install\r\ncd /\r\nrm -rf /tmp/prosody-build\r\n\r\nluarocks install luasec\r\nluarocks install luafilesystem\r\nluarocks install luasocket\r\nluarocks install luaexpat\r\nluarocks install LuaDBI\r\nluarocks install luasql-mysql MYSQL_INCDIR=/usr/include/mysql/\r\nluarocks install luadbi-mysql MYSQL_INCDIR=/usr/include/mysql/\r\n\r\n\r\ncp /home/app/prosody.cfg.lua.build /usr/local/etc/prosody/prosody.cfg.lua\r\nprosodyctl register $admin_user  $Domainname $admin_password\r\necho prosodyctl register $admin_user  $Domainname"
+        "content": "#!/bin/bash\r\n\r\n\r\n\r\nluarocks install luasec\r\nluarocks install luafilesystem\r\nluarocks install luasocket\r\nluarocks install luaexpat\r\nluarocks install LuaDBI\r\nluarocks install luasql-mysql MYSQL_INCDIR=/usr/include/mysql/\r\nluarocks install luadbi-mysql MYSQL_INCDIR=/usr/include/mysql/\r\n\r\ncd /tmp/\r\nmkdir prosody-build\r\ncd prosody-build\r\nwget https://prosody.im/downloads/source/prosody-0.9.12.tar.gz\r\ntar xzf prosody-0.9.12.tar.gz\r\ncd prosody-0.9.12\r\n ./configure --help\r\n ./configure --ostype=debian\r\nmake\r\nmake install\r\ncd /\r\nrm -rf /tmp/prosody-build\r\n\r\ncp /home/app/prosody.cfg.lua.build /usr/local/etc/prosody/prosody.cfg.lua\r\nprosodyctl register $admin_user  $Domainname $admin_password\r\necho prosodyctl register $admin_user  $Domainname"
       },
       "post_install": {
         "language": "sh",
