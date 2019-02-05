@@ -2,8 +2,8 @@
   "schema": {
     "type": "app_blueprint",
     "version": {
-      "major": 1,
-      "minor": 0
+      "major": 0,
+      "minor": 1
     },
     "origin": "Engines Developer Studio 0.2"
   },
@@ -28,7 +28,7 @@
         "url": "http://opensource.org/licenses/MIT"
       }
     },
-    "timestamp": "2017-06-26T11:18:38+10:00"
+    "timestamp": "2019-02-06T10:53:39+11:00"
   },
   "software": {
     "base": {
@@ -45,13 +45,13 @@
     },
     "ports": [
       {
-        "port": 5222,
-        "external": 5222,
+        "port": "5222",
+        "external": "5222",
         "protocol": "TCP"
       },
       {
-        "port": 5269,
-        "external": 5269,
+        "port": "5269",
+        "external": "5269",
         "protocol": "TCP"
       }
     ],
@@ -62,7 +62,7 @@
       },
       "install": {
         "language": "sh",
-        "content": "#!/bin/bash\r\n\r\n\r\n\r\nluarocks install luasec\r\nluarocks install luafilesystem\r\nluarocks install luasocket\r\nluarocks install luaexpat\r\n\r\necho \"install mysql driver\"\r\nluarocks install luasql-mysql MYSQL_INCDIR=/usr/include/mysql/\r\necho \"install DBI driver\"\r\nluarocks install LuaDBI\r\necho \"install mysql dbi driver\"\r\nluarocks install luadbi-mysql MYSQL_INCDIR=/usr/include/mysql/\r\n\r\ncd /tmp/\r\nmkdir prosody-build\r\ncd prosody-build\r\nwget https://prosody.im/downloads/source/prosody-0.9.12.tar.gz\r\ntar xzf prosody-0.9.12.tar.gz\r\ncd prosody-0.9.12\r\n ./configure --help\r\n ./configure --ostype=debian\r\nmake\r\nmake install\r\ncd /\r\nrm -rf /tmp/prosody-build\r\n\r\ncp /home/app/prosody.cfg.lua.build /usr/local/etc/prosody/prosody.cfg.lua\r\nprosodyctl register $admin_user  $Domainname $admin_password\r\necho prosodyctl register $admin_user  $Domainname"
+        "content": "#!/bin/bash\r\n\r\n\r\n\r\nluarocks install luasec\r\nluarocks install luafilesystem\r\nluarocks install luasocket\r\nluarocks install luaexpat\r\n\r\necho \"install mysql driver\"\r\nluarocks install luasql-mysql MYSQL_INCDIR=/usr/include/mysql/\r\necho \"install DBI driver\"\r\nluarocks install LuaDBI\r\necho \"install mysql dbi driver\"\r\nluarocks install luadbi-mysql MYSQL_INCDIR=/usr/include/mysql/\r\n\r\ncd /tmp/\r\nmkdir prosody-build\r\ncd prosody-build\r\nwget https://prosody.im/downloads/source/prosody-0.11.2.tar.gz\r\ntar xzf prosody-0.11.2.tar.gz\r\ncd prosody-0.11.2\r\n ./configure --help\r\n ./configure --ostype=debian\r\nmake\r\nmake install\r\ncd /\r\nrm -rf /tmp/prosody-build\r\n\r\ncp /home/app/prosody.cfg.lua.build /usr/local/etc/prosody/prosody.cfg.lua\r\nprosodyctl register $admin_user  $Domainname $admin_password\r\necho prosodyctl register $admin_user  $Domainname"
       },
       "post_install": {
         "language": "sh"
@@ -131,13 +131,11 @@
         "publisher_namespace": "EnginesSystem",
         "type_path": "database/sql/mysql",
         "variables": {
-          "collation": "utf8_general_ci",
-          "db_flavor": "mysql2",
-          "db_password": "_Engines_System(random(10))",
-          "db_username": "_Engines_Builder(engine_name)",
           "database_name": "_Engines_Builder(engine_name)",
           "database_host": "_Engines_System(mysql_host)",
-          "name": "_Engines_Builder(engine_name)",
+          "db_username": "_Engines_Builder(engine_name)",
+          "db_password": "_Engines_System(random(10))",
+          "collation": "utf8_general_ci",
           "full_access": "false"
         }
       }
