@@ -28,7 +28,7 @@
         "url": "http://opensource.org/licenses/MIT"
       }
     },
-    "timestamp": "2019-02-06T13:21:12+11:00"
+    "timestamp": "2020-02-10T07:28:07+11:00"
   },
   "software": {
     "base": {
@@ -119,12 +119,14 @@
         "publisher_namespace": "EnginesSystem",
         "type_path": "filesystem/local/filesystem",
         "variables": {
-          "permissions": "rw",
-          "engine_path": "config_and_data",
           "service_name": "_Engines_Builder(engine_name)",
           "volume_src": " ",
+          "engine_path": "config_and_data",
+          "permissions": "rw",
+          "user": "_Engines_Builder(data_uid)",
           "group": "_Engines_Builder(data_gid)",
-          "user": "_Engines_Builder(data_uid)"
+          "fw_user": "_Engines_Builder(cont_user_id)",
+          "exclude_from_backup": "false"
         }
       },
       {
