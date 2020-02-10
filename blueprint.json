@@ -28,7 +28,7 @@
         "url": "http://opensource.org/licenses/MIT"
       }
     },
-    "timestamp": "2020-02-10T13:28:51+11:00"
+    "timestamp": "2020-02-11T07:44:46+11:00"
   },
   "software": {
     "base": {
@@ -62,7 +62,7 @@
       },
       "install": {
         "language": "sh",
-        "content": "#!/bin/sh\r\n\r\n\r\n\r\n#luarocks install luasec\r\n#luarocks install luafilesystem\r\n#luarocks install luasocket\r\n#luarocks install luaexpat\r\n\r\n#echo \"install mysql driver\"\r\n#luarocks install luasql-mysql MYSQL_INCDIR=/usr/include/mysql/\r\n#echo \"install DBI driver\"\r\n#luarocks install LuaDBI\r\n#echo \"install mysql dbi driver\"\r\n#luarocks install luadbi-mysql MYSQL_INCDIR=/usr/include/mysql/\r\n\r\ncd /tmp/\r\nmkdir prosody-build\r\ncd prosody-build\r\nwget https://prosody.im/downloads/source/prosody-0.11.2.tar.gz\r\ntar xzf prosody-0.11.2.tar.gz\r\ncd prosody-0.11.2\r\n ./configure --help \r\n ./configure --ostype=debian --prefix=/home/app/\r\nmake\r\nmake install\r\ncd /\r\nrm -rf /tmp/prosody-build\r\n\r\ncp /home/app/prosody.cfg.lua.build  /homr/app/etc/prosody/prosody.cfg.lua\r\n/home/app/bin/prosodyctl register $admin_user  $Domainname $admin_password\r\necho prosodyctl register $admin_user  $Domainname"
+        "content": "#!/bin/sh\r\n\r\n\r\n\r\n#luarocks install luasec\r\n#luarocks install luafilesystem\r\n#luarocks install luasocket\r\n#luarocks install luaexpat\r\n\r\n#echo \"install mysql driver\"\r\nluarocks install luasql-mysql MYSQL_INCDIR=/usr/include/mysql/\r\n#echo \"install DBI driver\"\r\nluarocks install LuaDBI\r\n#echo \"install mysql dbi driver\"\r\nluarocks install luadbi-mysql MYSQL_INCDIR=/usr/include/mysql/\r\n\r\ncd /tmp/\r\nmkdir prosody-build\r\ncd prosody-build\r\nwget https://prosody.im/downloads/source/prosody-0.11.2.tar.gz\r\ntar xzf prosody-0.11.2.tar.gz\r\ncd prosody-0.11.2\r\n ./configure --help \r\n ./configure --ostype=debian --prefix=/home/app/\r\nmake\r\nmake install\r\ncd /\r\nrm -rf /tmp/prosody-build\r\n\r\ncp /home/app/prosody.cfg.lua.build  /homr/app/etc/prosody/prosody.cfg.lua\r\n/home/app/bin/prosodyctl register $admin_user  $Domainname $admin_password\r\necho prosodyctl register $admin_user  $Domainname"
       },
       "post_install": {
         "language": "sh"
@@ -105,14 +105,6 @@
       },
       {
         "name": "luaDBI",
-        "type": "lua"
-      },
-      {
-        "name": "luadbi-mysql",
-        "type": "lua"
-      },
-      {
-        "name": "luasql-mysql",
         "type": "lua"
       }
     ],
