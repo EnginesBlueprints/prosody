@@ -28,7 +28,7 @@
         "url": "http://opensource.org/licenses/MIT"
       }
     },
-    "timestamp": "2020-02-10T13:23:22+11:00"
+    "timestamp": "2020-02-10T13:28:51+11:00"
   },
   "software": {
     "base": {
@@ -72,9 +72,6 @@
       }
     },
     "system_packages": [
-      {
-        "package": "lua5.4"
-      },
       {
         "package": "libidn11-dev"
       },
