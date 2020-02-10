@@ -28,7 +28,7 @@
         "url": "http://opensource.org/licenses/MIT"
       }
     },
-    "timestamp": "2020-02-10T09:42:35+11:00"
+    "timestamp": "2020-02-10T13:05:13+11:00"
   },
   "software": {
     "base": {
@@ -58,11 +58,11 @@
     "scripts": {
       "start": {
         "language": "sh",
-        "content": "#!/bin/sh\r\nPID_FILE=/tmp/prosody.pid\r\nexport PID_FILE\r\n mkdir -p /var/log/prosody/\r\n \r\nif ! test -f /home/fs/config_and_data/installed\r\n then\r\n    mkdir /home/fs/config_and_data/etc \r\n    cp -r /home/fs_src/config_and_data/etc/prosody /home/fs/config_and_data/etc\r\n    \r\ncp /home/app/prosody.cfg.lua.build /home/fs/config_and_data/etc/prosody/prosody.cfg.lua\r\n\r\ntouch  /home/fs/config_and_data/installed\r\nfi\r\n . /home/engines/functions/trap.sh\r\n\r\nprosody &\r\n\r\nstartup_complete\r\nsleep 600\r\nwait\r\n\r\nrm /tmp/prosody.pid\r\n"
+        "content": "#!/bin/sh\r\nPID_FILE=/tmp/prosody.pid\r\nexport PID_FILE\r\n mkdir -p /var/log/prosody/\r\n \r\nif ! test -f /home/fs/config_and_data/installed\r\n then\r\n    mkdir /home/fs/config_and_data/etc \r\n    cp -r /home/fs_src/config_and_data/etc/prosody /home/fs/config_and_data/etc\r\n    \r\ncp /home/app/prosody.cfg.lua.build /home/fs/config_and_data/etc/prosody/prosody.cfg.lua\r\n\r\ntouch  /home/fs/config_and_data/installed\r\nfi\r\n . /home/engines/functions/trap.sh\r\n\r\n/home/app/bin/prosody &\r\n\r\nstartup_complete\r\nsleep 600\r\nwait\r\n\r\nrm /tmp/prosody.pid\r\n"
       },
       "install": {
         "language": "sh",
-        "content": "#!/bin/bash\r\n\r\n\r\n\r\nluarocks install luasec\r\nluarocks install luafilesystem\r\nluarocks install luasocket\r\nluarocks install luaexpat\r\n\r\necho \"install mysql driver\"\r\nluarocks install luasql-mysql MYSQL_INCDIR=/usr/include/mysql/\r\necho \"install DBI driver\"\r\nluarocks install LuaDBI\r\necho \"install mysql dbi driver\"\r\nluarocks install luadbi-mysql MYSQL_INCDIR=/usr/include/mysql/\r\n\r\ncd /tmp/\r\nmkdir prosody-build\r\ncd prosody-build\r\nwget https://prosody.im/downloads/source/prosody-0.11.2.tar.gz\r\ntar xzf prosody-0.11.2.tar.gz\r\ncd prosody-0.11.2\r\n ./configure --help\r\n ./configure --ostype=debian\r\nmake\r\nmake install\r\ncd /\r\nrm -rf /tmp/prosody-build\r\n\r\ncp /home/app/prosody.cfg.lua.build /usr/local/etc/prosody/prosody.cfg.lua\r\nprosodyctl register $admin_user  $Domainname $admin_password\r\necho prosodyctl register $admin_user  $Domainname"
+        "content": "#!/bin/sh\r\n\r\n\r\n\r\n#luarocks install luasec\r\n#luarocks install luafilesystem\r\n#luarocks install luasocket\r\n#luarocks install luaexpat\r\n\r\n#echo \"install mysql driver\"\r\n#luarocks install luasql-mysql MYSQL_INCDIR=/usr/include/mysql/\r\n#echo \"install DBI driver\"\r\n#luarocks install LuaDBI\r\n#echo \"install mysql dbi driver\"\r\n#luarocks install luadbi-mysql MYSQL_INCDIR=/usr/include/mysql/\r\n\r\ncd /tmp/\r\nmkdir prosody-build\r\ncd prosody-build\r\nwget https://prosody.im/downloads/source/prosody-0.11.2.tar.gz\r\ntar xzf prosody-0.11.2.tar.gz\r\ncd prosody-0.11.2\r\n ./configure --help \r\n ./configure --ostype=debian --prefix=/home/app/\r\nmake\r\nmake install\r\ncd /\r\nrm -rf /tmp/prosody-build\r\n\r\ncp /home/app/prosody.cfg.lua.build  /homr/app/etc/prosody/prosody.cfg.lua\r\n/home/app/bin/prosodyctl register $admin_user  $Domainname $admin_password\r\necho prosodyctl register $admin_user  $Domainname"
       },
       "post_install": {
         "language": "sh"
@@ -73,10 +73,10 @@
     },
     "system_packages": [
       {
-        "package": "lua5.1"
+        "package": "lua5.4"
       },
       {
-        "package": "liblua5.1-dev"
+        "package": "liblua5.4-dev"
       },
       {
         "package": "libidn11-dev"
@@ -111,6 +111,14 @@
       },
       {
         "name": "luaDBI",
+        "type": "lua"
+      },
+      {
+        "name": "luadbi-mysql",
+        "type": "lua"
+      },
+      {
+        "name": "luasql-mysql",
         "type": "lua"
       }
     ],
@@ -168,6 +176,14 @@
         "immutable": true,
         "input": {
           "type": "boolean"
+        }
+      },
+      {
+        "name": "MYSQL_INCDIR",
+        "value": "/usr/include/mysql/",
+        "build_time_only": true,
+        "input": {
+          "type": "string"
         }
       }
     ],
